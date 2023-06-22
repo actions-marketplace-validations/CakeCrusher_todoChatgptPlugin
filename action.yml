@@ -1,5 +1,5 @@
 name: 'todoChatgptPlugin'
-description: 'Starts a simple todoChatgptPlugin.'
+description: 'Starts a simple todo ChatGPT plugin server at url http://localhost:3333 for in an action workflow.'
 branding:
   icon: 'server'
   color: 'purple'
