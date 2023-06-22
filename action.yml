@@ -1,5 +1,5 @@
-name: 'ChatgptTodoPlugin'
-description: 'Starts a simple ChatGPT todo plugin.'
+name: 'todoChatgptPlugin'
+description: 'Starts a simple todoChatgptPlugin.'
 branding:
   icon: 'server'
   color: 'purple'
@@ -9,6 +9,8 @@ runs:
   steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      with:
+        path: todoChatgptPlugin
     
     - name: Set up Python Environment
       uses: actions/setup-python@v2
@@ -18,12 +20,14 @@ runs:
     - name: Install Dependencies
       shell: bash
       run: |
+        cd todoChatgptPlugin
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements.txt  
     
     - name: Start Server
       shell: bash
       run: |
+        cd todoChatgptPlugin
         python main.py & # Starts the server in the background
         
     - name: Check Server
