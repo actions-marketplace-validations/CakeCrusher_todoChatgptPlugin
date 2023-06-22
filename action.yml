@@ -7,9 +7,10 @@ branding:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout Repository
+    - name: Checkout todoChatgptPlugin repository
       uses: actions/checkout@v2
       with:
+        repository: 'CakeCrusher/todoChatgptPlugin'
         path: todoChatgptPlugin
     
     - name: Set up Python Environment
