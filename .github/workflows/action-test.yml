@@ -1,0 +1,23 @@
+name: Test ChatgptTodoPlugin action
+
+on: push
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Use ChatgptTodoPlugin Action
+        uses: ./ 
+
+      - name: Test Server
+        run: |
+          STATUS=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3333/openapi.yaml)
+          if [ $STATUS -eq 200 ]; then
+            echo "Server is up and running! Test Passed."
+          else
+            echo "Server is not responding. Test Failed."
+            exit 1
+          fi
