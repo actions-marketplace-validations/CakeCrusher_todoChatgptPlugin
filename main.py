@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 PORT = 3333
-thisUrl = "http://localhost:3333"
+thisUrl = "http://127.0.0.1:3333"
 
 # Note: Setting CORS to allow chat.openapi.com is required for ChatGPT to access your plugin
 CORS(app, origins=[thisUrl, "https://chat.openai.com"])

@@ -1,41 +1,41 @@
-name: 'todoChatgptPlugin'
-description: 'Starts a simple todo ChatGPT plugin server at url http://localhost:3333 for in an action workflow.'
+name: "todoChatgptPlugin"
+description: "Starts a simple todo ChatGPT plugin server at url http://127.0.0.1:3333 for in an action workflow."
 branding:
-  icon: 'server'
-  color: 'purple'
+  icon: "server"
+  color: "purple"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Checkout todoChatgptPlugin repository
       uses: actions/checkout@v2
       with:
-        repository: 'CakeCrusher/todoChatgptPlugin'
+        repository: "CakeCrusher/todoChatgptPlugin"
         path: todoChatgptPlugin
-    
+
     - name: Set up Python Environment
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
-    
+        python-version: "3.8"
+
     - name: Install Dependencies
       shell: bash
       run: |
         cd todoChatgptPlugin
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  
-    
+        pip install -r requirements.txt
+
     - name: Start Server
       shell: bash
       run: |
         cd todoChatgptPlugin
         python main.py & # Starts the server in the background
-        
+
     - name: Check Server
       shell: bash
       run: |
         while true; do
-          STATUS=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3333/openapi.yaml)
+          STATUS=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3333/openapi.yaml)
           if [ $STATUS -eq 200 ]; then
             echo "Server is up and running!"
             break
